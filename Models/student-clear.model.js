@@ -1,28 +1,18 @@
 const mongoose = require("mongoose");
 
-const studentClearSchema = mongoose.Schema({
+const studentRecSchema = mongoose.Schema({
     fullname: String,
     matric: String,
-    degree: String,
-    phone: Number,
+    department: String,
+    type: String,
+    email: String,
+    phone: String,
+    requirements: [
+        {section: String, cleared: String}
+    ],
     cleared: Boolean
-})
+});
 
-const studentrecordSchema = mongoose.Schema({
-    fullname: String,
-    matric: String,
-    department: Boolean,
-    library: Boolean,
-    sport: Boolean,
-    clinic: Boolean,
-    hostel: Boolean,
-    security: Boolean,
-    busary: Boolean,
-    alumni: Boolean,
-    postgraduate: Boolean
-})
+const StudentRec = mongoose.model("Student-clear", studentRecSchema);
 
-const StudentClear = mongoose.model("Student-clear", studentClearSchema);
-const StudentRecord = mongoose.model("StudentRecord", studentrecordSchema);
-
-module.exports = { StudentClear, StudentRecord };
+module.exports = { StudentRec };

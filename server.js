@@ -17,38 +17,14 @@ mongoose.connect(
     process.env.MONGODB_URL
 )
 
-// Creating a new admin
-app.post("/admin", (req, res) => {
-    const admin = new Admin(req.body);
+// Admin Post Requests
+app.use("/admin", require("./Routes/Admin/admin-post"));
 
-    admin.save()
-    .then( doc => res.status(200).send(doc) )
-    .catch( err => res.send(400).send(err) );
-})
+// Student Record Post Requests
+app.use("/student", require('./Routes/Student/student-post'));
 
-app.post('/check-admin', (req, res) => {
-    Admin.findOne({ admin: req.body.admin })
-    .then( doc => res.status(200).json({auth: true, doc}) )
-    .catch( err => res.status(400).send(err) );
-})
-
-// Creating a new student for clearance
-app.post('/new-student-clear', (req, res) => {
-    const studentClear = new StudentClear(req.body);
-
-    studentClear.save()
-    .then( doc => res.status(200).send(doc) )
-    .catch( err => res.status(400).send(err) );
-})
-
-// All students that can be cleared
-app.post('/student-record', (req, res) => {
-    const studentRecord = new StudentRecord(req.body);
-
-    studentRecord.save()
-    .then( doc => res.status(200).send(doc) )
-    .catch( err => res.status(400).send(err) );
-})
+// Student Record Get Requests
+app.use("/student", require('./Routes/Student/student-get'));
 
 const port = process.env.PORT || 3000;
 
