@@ -43,8 +43,8 @@ router.post('/send-email', (req, res) => {
       const mailOptions = {
         from: 'ganiyu.bolaji@binghamuni.edu.ng',
         to: 'ganiyu.bolaji.bo@gmail.com',
-        subject: 'Hello from Nodemailer',
-        text: 'This is a test email sent from Nodemailer.',
+        subject: req.body.subject,
+        text: req.body.text,
       };
 
       // Send the email

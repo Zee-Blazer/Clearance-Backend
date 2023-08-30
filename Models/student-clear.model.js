@@ -7,6 +7,7 @@ const studentRecSchema = mongoose.Schema({
     type: String,
     email: String,
     phone: String,
+    valid: Boolean,
     requirements: [
         {section: String, cleared: String}
     ],

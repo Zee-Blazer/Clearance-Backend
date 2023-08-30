@@ -18,9 +18,9 @@ router.post('/login', (req, res) => {
     Admin.findOne({ admin: req.body.admin })
     .then( (user) => {
         if(user.password == req.body.password) res.status(200).send(user)
-        res.status(400).send("Error")
+        else res.status(400).send("Error")
     })
-    .catch( err => res.send(err) );
+    .catch( err => res.status(400).send(err) );
 
 })
 

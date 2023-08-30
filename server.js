@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
 
 // Admin Model
 const { Admin } = require('./Models/admin.model');
@@ -10,6 +11,8 @@ const { StudentClear, StudentRecord } = require('./Models/student-clear.model');
 require('dotenv').config();
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json())
 
